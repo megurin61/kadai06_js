@@ -1,0 +1,129 @@
+body {
+    font-family: 'Arial', sans-serif; /* フォントファミリの指定 */
+    background-color: #fff0f5; /* 背景色をライトピンクに設定 */
+    margin: 0;
+    padding: 0;
+    display: flex; /* 要素をフレックスコンテナに設定 */
+    justify-content: center; /* 横方向に中央揃え */
+    align-items: flex-start; /* 縦方向は上揃え */
+    min-height: 100vh; /* ビューポート全体の高さを確保 */
+    box-sizing: border-box; /* 要素のサイズ計算を含む */
+}
+
+.container {
+    text-align: center; /* テキストを中央揃え */
+    background: #ffe4e1; /* 背景色を薄いピンクに設定 */
+    border-radius: 15px; /* 角を丸くする */
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* 影を付ける */
+    width: 90%; /* コンテナの幅を90%に設定 */
+    max-width: 700px; /* 最大幅を700pxに制限 */
+    margin: 20px auto; /* 上下マージンを20px、左右を自動で中央揃え */
+}
+
+.title {
+    color: #ff69b4; /* タイトルの文字色をピンクに設定 */
+    font-size: 2.2em; /* フォントサイズを大きくする */
+    margin-bottom: 20px;
+    font-family: 'Cursive'; /* フォントをカジュアルなスタイルに */
+}
+
+#search-box {
+    width: 90%; /* 検索ボックスの幅を90%に */
+    padding: 10px;
+    border-radius: 20px; /* 角を丸くする */
+    border: 1px solid #ff69b4; /* 枠線の色をピンクに */
+    outline: none;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    box-sizing: border-box;
+}
+
+#search-button {
+    background-color: #ff69b4; /* ボタンの背景色をピンクに */
+    color: white; /* ボタンのテキストを白に */
+    border: none; /* 枠線を消す */
+    padding: 10px 25px;
+    border-radius: 20px; /* ボタンの角を丸く */
+    font-size: 1.2em;
+    cursor: pointer; /* ホバー時にポインターを表示 */
+    transition: background-color 0.3s; /* 背景色の変更にアニメーションを追加 */
+    margin-top: 10px;
+}
+
+#search-button:hover {
+    background-color: #ff1493; /* ホバー時に背景色を濃いピンクに変更 */
+}
+
+#recipe-list {
+    list-style-type: none; /* リストの箇条書きスタイルを消す */
+    padding: 0;
+    margin-top: 20px;
+}
+
+#recipe-list ul {
+    background-color: #fff; /* リスト項目の背景色を白に */
+    border: 1px solid #ff69b4; /* 枠線をピンクに */
+    border-radius: 10px; /* 角を丸くする */
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* 影を付ける */
+    text-align: left; /* テキストを左揃え */
+}
+
+.recipe-image {
+    width: 100%; /* 画像を100%の幅に拡大 */
+    border-radius: 10px; /* 画像の角を丸くする */
+    margin-bottom: 10px;
+    max-width: 100%; /* 画像がコンテナを超えないようにする */
+    height: auto; /* 画像のアスペクト比を保持 */
+}
+
+.recipe-details {
+    display: flex;
+    flex-direction: column; /* 要素を縦に並べる */
+    align-items: flex-start; /* テキストを左揃え */
+}
+
+.recipe-description {
+    font-size: 1.1em;
+    margin-top: 10px;
+    color: #555; /* 説明文の文字色をやや暗めに */
+}
+
+.ingredients, .instructions {
+    margin-top: 15px;
+    font-size: 1em;
+    color: #333; /* 材料・作り方の文字色を濃いグレーに */
+    text-align: justify; /* テキストを均等揃えに */
+}
+
+.ingredients li, .instructions li {
+    margin-bottom: 5px; /* リスト項目にマージンを追加 */
+}
+
+h3 {
+    color: #ff69b4; /* 見出しの文字色をピンクに */
+    margin-top: 15px;
+    text-align: left; /* 見出しを左揃えに */
+}
+
+/* メディアクエリ: スマホ対応 */
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.8em; /* タイトルをやや小さく */
+    }
+
+    #search-box {
+        width: 100%; /* 検索ボックスの幅を100%に */
+    }
+
+    #search-button {
+        width: 100%; /* ボタンの幅を100%に */
+        font-size: 1.1em; /* フォントサイズを少し小さく */
+    }
+
+    .container {
+        padding: 15px; /* パディングを狭くする */
+    }
+}

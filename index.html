@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"> <!-- 文字エンコーディングを指定（UTF-8で日本語対応） -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- レスポンシブデザインをサポートするためのビューポート設定 -->
+    <title>料理レシピ検索アプリ</title>
+    <link rel="stylesheet" href="styles.css"> <!-- 外部のCSSファイル（styles.css）をリンク -->
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">レシピ検索アプリ</h1> <!-- アプリのタイトルを表示 -->
+        <input type="text" id="search-box" placeholder="レシピを検索..." /> <!-- ユーザーがレシピを検索できるテキストボックス -->
+        <button id="search-button">検索</button> <!-- 検索ボタン -->
+        <ul id="recipe-list"></ul> <!-- レシピリストを表示するための空のリスト -->
+    </div>
+
+    <!-- jQueryライブラリを読み込む -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        $(function() {
+            // レシピデータを用意（サンプルデータとして）
+            var recipes = [
+                {
+                    name: "オムライス", 
+                    description: "ふわふわ卵のオムライス", 
+                    image: "adpDSC_2383.jpg", 
+                    ingredients: [
+                        "卵 2個",
+                        "ごはん 150g",
+                        "ハム 2枚",
+                        "たまねぎ 1/4個",
+                        "塩こしょう 適量",
+                        "ケチャップ 大さじ4"
+                    ],
+                    instructions: [
+                        "ハムとたまねぎを炒めます。",
+                        "ごはんを加えて、ケチャップで味付けします。",
+                        "卵を焼き、ごはんを包みます。"
+                    ]
+                },
+                {
+                    name: "パスタ", 
+                    description: "クリーミーパスタのレシピ", 
+                    image: "https://www.example.com/pasta.jpg",
+                    ingredients: ["パスタ 100g", "クリームソース 150ml"],
+                    instructions: ["パスタを茹でる", "クリームソースを加えて混ぜる"]
+                },
+                {
+                    name: "カレーライス", 
+                    description: "スパイシーなカレーライス", 
+                    image: "https://www.example.com/curry.jpg",
+                    ingredients: ["カレー粉", "ごはん"],
+                    instructions: ["カレーを作る", "ごはんを盛り付ける"]
+                }
+            ];
+
+            // 検索ボタンがクリックされた時の処理
+            $('#search-button').click(function() {
+                var searchQuery = $('#search-box').val().toLowerCase(); // 検索ボックスの値を取得し小文字に変換
+
+                // レシピデータを検索クエリでフィルタリング
+                var filteredRecipes = recipes.filter(function(recipe) {
+                    return recipe.name.toLowerCase().includes(searchQuery); // レシピ名が検索クエリに含まれるかチェック
+                });
+
+                // レシピリストをクリア
+                $('#recipe-list').empty();
+                if (filteredRecipes.length > 0) {
+                    // フィルタリングされたレシピをリストに追加
+                    filteredRecipes.forEach(function(recipe) {
+                        var recipeHtml = '<li>' +
+                            '<img src="' + recipe.image + '" alt="' + recipe.name + '" class="recipe-image">' + // レシピ画像
+                            '<div class="recipe-details">' +
+                            '<strong>' + recipe.name + '</strong>' + // レシピ名
+                            '<p class="recipe-description">' + recipe.description + '</p>'; // レシピの説明
+
+                        if (recipe.ingredients) {
+                            recipeHtml += '<h3>材料:</h3><ul class="ingredients">';
+                            recipe.ingredients.forEach(function(ingredient) {
+                                recipeHtml += '<li>' + ingredient + '</li>'; // 材料リスト
+                            });
+                            recipeHtml += '</ul>';
+                        }
+
+                        if (recipe.instructions) {
+                            recipeHtml += '<h3>作り方:</h3><ol class="instructions">';
+                            recipe.instructions.forEach(function(instruction) {
+                                recipeHtml += '<li>' + instruction + '</li>'; // 作り方リスト
+                            });
+                            recipeHtml += '</ol>';
+                        }
+
+                        recipeHtml += '</div></li>';
+
+                        // レシピリストに追加
+                        $('#recipe-list').append(recipeHtml);
+                    });
+                } else {
+                    $('#recipe-list').append('<li>該当するレシピが見つかりませんでした。</li>'); // レシピが見つからない場合のメッセージ
+                }
+            });
+        });
+    </script>
+</body>
+</html>
